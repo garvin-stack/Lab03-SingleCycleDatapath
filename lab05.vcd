@@ -1,0 +1,90 @@
+$date
+	Fri Apr 28 22:50:05 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module processor_tb $end
+$var wire 6 ! instr_opcode [5:0] $end
+$var wire 32 " prog_count [31:0] $end
+$var wire 5 # reg1_addr [4:0] $end
+$var wire 32 $ reg1_data [31:0] $end
+$var wire 5 % reg2_addr [4:0] $end
+$var wire 32 & reg2_data [31:0] $end
+$var wire 5 ' write_reg_addr [4:0] $end
+$var wire 32 ( write_reg_data [31:0] $end
+$var reg 1 ) clk $end
+$var reg 1 * rst $end
+$var integer 32 + passedTests [31:0] $end
+$var integer 32 , totalTests [31:0] $end
+$scope module uut $end
+$var wire 1 ) clk $end
+$var wire 6 - instr_opcode [5:0] $end
+$var wire 32 . prog_count [31:0] $end
+$var wire 5 / reg1_addr [4:0] $end
+$var wire 32 0 reg1_data [31:0] $end
+$var wire 5 1 reg2_addr [4:0] $end
+$var wire 32 2 reg2_data [31:0] $end
+$var wire 1 * rst $end
+$var wire 5 3 write_reg_addr [4:0] $end
+$var wire 32 4 write_reg_data [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bz 4
+bz 3
+bz 2
+bz 1
+bz 0
+bz /
+bz .
+bz -
+b0 ,
+b0 +
+1*
+0)
+bz (
+bz '
+bz &
+bz %
+bz $
+bz #
+bz "
+bz !
+$end
+#50000
+1)
+#100000
+0*
+0)
+#105000
+1)
+#110000
+0)
+#115000
+1)
+#116000
+b1 ,
+#120000
+0)
+#125000
+1)
+#126000
+b10 ,
+#130000
+0)
+#135000
+1)
+#136000
+b11 ,
+#140000
+0)
+#145000
+1)
+#146000
+b100 ,

@@ -3,7 +3,7 @@ LW $v1,32($zero) # Load 174 (0000 1010 1110) at line 32
 add  $a0, $v0, $v1 # a0 = 535 
 addi $a0, $v0, 100 # a0 = 461 
 
-lw $v0, 31($zero) # Looad 3 into V0 at line 31
-subi $v0, v0, 1   #
-slt  $v1, $v0, $zerr
-beq  $v1 $zero -8 
+lw $v0, 31($zero) # Looad 3 into V0 at line 31, 361 //100011 00000 00010 0000000000011111
+addi $v0, v0, -1   #  360 v0= v0 - 1// 001000 00010 00010 1000000000000001
+slt  $v1, $v0, $zero # if(v0 < 0) v1=1// 101010 00010 00011 0000000000000000
+beq  $v1 $zero -8 # if(v1 == zero) else jump to -8// 000100 00011 00000 1000000000001000

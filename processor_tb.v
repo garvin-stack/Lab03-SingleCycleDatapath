@@ -105,6 +105,47 @@ initial begin
         $display("failed.");
     end
 
+    @(posedge clk); #1;
+    totalTests = totalTests + 1;
+    $write("Test Case %0d: lw $v0, 31($zero)...", totalTests);
+    if (write_reg_addr === 31 && write_reg_data === 361) begin
+        passedTests = passedTests + 1;
+        $display("passed.");
+    end else begin
+        $display("failed.");
+    end
+
+    @(posedge clk); #1;
+    totalTests = totalTests + 1;
+    $write("Test Case %0d: subi $v0, v0, 1 ...", totalTests);
+    if (write_reg_addr === 2 && write_reg_data === 360) begin
+        passedTests = passedTests + 1;
+        $display("passed.");
+    end else begin
+        $display("failed.");
+    end
+
+    @(posedge clk); #1;
+    totalTests = totalTests + 1;
+    $write("Test Case %0d: slt  $v1, $v0, $zero ...", totalTests);
+    if (write_reg_addr === 3 && write_reg_data === 0) begin
+        passedTests = passedTests + 1;
+        $display("passed.");
+    end else begin
+        $display("failed.");
+    end
+
+    #beq  $v1 $zero -8 # if(v1 == zero) else jump to -8
+    @(posedge clk); #1;
+    totalTests = totalTests + 1;
+    $write("Test Case %0d: beq  $v1 $zero -8  ...", totalTests);
+    if (write_reg_addr === 9 && write_reg_data === 0) begin
+        passedTests = passedTests + 1;
+        $display("passed.");
+    end else begin
+        $display("failed.");
+    end
+
     $display("------------------------------------------------------------------");
     $display("Testing complete\nPassed %0d / %0d tests.",passedTests,totalTests);
     $display("------------------------------------------------------------------");
