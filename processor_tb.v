@@ -83,11 +83,14 @@ initial begin
 
    /* Individual tests... Check the result after each instruction */
     @(negedge rst); // Wait for reset
-    @(posedge clk); // Skip LW instruction
+    @(posedge clk); #1// Skip LW instruction
+    $display("prog_count: %d", prog_count);
 
     @(posedge clk); #1; 
     totalTests = totalTests + 1;
     $write("Test Case %0d: add $a0, $v0, V1...", totalTests);
+    
+    $display("prog_count: %d", prog_count);
     if (write_reg_addr === 4 && write_reg_data === 535) begin
         passedTests = passedTests + 1;
         $display("passed.");
@@ -98,6 +101,8 @@ initial begin
     @(posedge clk); #1;
     totalTests = totalTests + 1;
     $write("Test Case %0d: addi $a0, $v0, 100...", totalTests);
+    
+    $display("prog_count: %d", prog_count);
     if (write_reg_addr === 4 && write_reg_data === 461) begin
         passedTests = passedTests + 1;
         $display("passed.");
@@ -108,6 +113,8 @@ initial begin
     @(posedge clk); #1;
     totalTests = totalTests + 1;
     $write("Test Case %0d: lw $v0, 31($zero)...", totalTests);
+    
+    $display("prog_count: %d", prog_count);
     if (write_reg_addr === 31 && write_reg_data === 361) begin
         passedTests = passedTests + 1;
         $display("passed.");
@@ -135,7 +142,7 @@ initial begin
         $display("failed.");
     end
 
-    #beq  $v1 $zero -8 # if(v1 == zero) else jump to -8
+    //#beq  $v1 $zero -8 # if(v1 == zero) else jump to -8
     @(posedge clk); #1;
     totalTests = totalTests + 1;
     $write("Test Case %0d: beq  $v1 $zero -8  ...", totalTests);

@@ -19,7 +19,7 @@ module processor #(parameter WORD_SIZE=32,MEM_FILE="init.coe") (
     input clk,
     input rst,   
 	 // Debug signals 
-    output [WORD_SIZE-1:0] prog_count, 
+    output wire [WORD_SIZE-1:0] prog_count, 
     output [5:0] instr_opcode,
     output [4:0] reg1_addr,
     output [WORD_SIZE-1:0] reg1_data,
@@ -29,8 +29,28 @@ module processor #(parameter WORD_SIZE=32,MEM_FILE="init.coe") (
     output [WORD_SIZE-1:0] write_reg_data 
 );
 
+wire [31:0] curr_pc;
+wire [31:0] next_pc;
+
+assign next_pc = curr_pc + 4;
+assign prog_count = curr_pc;
+
 // ----------------------------------------------
 // Insert solution below here
 // ----------------------------------------------
+gen_register PCRegister (
+    .clk(clk),
+    .rst(rst),
+    .write_en(1'b1),
+    .data_in(next_pc),
+    .data_out(curr_pc)
+);
+
+cpumemory instructionMemory (
+    .clk(clk),
+    .data_mem_write(1'b1),
+    .buff[data_address](data_write_data)
+);
+
 
 endmodule
