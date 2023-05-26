@@ -74,7 +74,7 @@ gen_register PCRegister (
     .data_out(curr_pc)
 );
 
-cpumemory instructionMemory(//#(.MEM_FILE(MEM_FILE)) instructionMemory (
+cpumemory #(.MEM_FILE(MEM_FILE)) instructionMemory (
     .clk(clk),
     .rst(rst),
     .instr_read_address(curr_pc[9:2]),
