@@ -52,7 +52,7 @@ wire mem_write;
 wire reg_write;
 wire zero;
 wire reg_dst;
-
+wire [4:0] mux_15_11;
 wire [31:0] immediate;
 
 assign next_pc = curr_pc + 4;
@@ -60,7 +60,9 @@ assign prog_count = curr_pc;
 assign instr_opcode = instruction[31:26];
 assign reg1_addr = instruction[25:21];
 assign reg2_addr = instruction[20:16];
-assign write_reg_addr = write_reg_mux_out;
+assign write_reg_addr =write_reg_mux_out;
+assign mux_15_11 = instruction[15:11];
+
 assign immediate = {{16{instruction[15:0]}}, instruction[15:0]};
 
 // ----------------------------------------------
@@ -118,7 +120,7 @@ control_unit control_instr_31_26 (
 mux_2_1 #(.WORD_SIZE(5)) write_reg_mux(
     .select_in(reg_dst),
     .datain1(reg2_addr),
-    .datain2(write_reg_addr),
+    .datain2(mux_15_11),
     .data_out(write_reg_mux_out)
 );
 
