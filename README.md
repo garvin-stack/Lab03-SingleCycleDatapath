@@ -106,6 +106,12 @@ report will again be short, and comprised of two sections. The first section is 
 each test case. Use this section to discuss what changes you made in your tests from the prelab
 until this final report. The second section should include your waveform. 
 
+![image](lab03gtkwave.PNG)
+
+
+
+
+
 ## Submission:
 
 Each student **must** turn in their repository from GitHub to Gradescope. The contents of which should be:
